@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import './InvoiceModal.css';
 
-const API_URL = 'http://localhost:3000/api/invoices';
-
 export default function InvoiceModal({ invoice, onClose, onSaved }) {
   const isEditMode = Boolean(invoice);
 
@@ -46,8 +44,8 @@ export default function InvoiceModal({ invoice, onClose, onSaved }) {
     try {
         const method = isEditMode ? 'PUT' : 'POST';
         const url = isEditMode
-        ? `${API_URL}/${invoice._id}`
-        : API_URL;
+        ? `${VITE_API_URL}/${invoice._id}`
+        : VITE_API_URL;
 
         const res = await fetch(url, {
         method,
