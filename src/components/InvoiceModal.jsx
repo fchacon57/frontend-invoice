@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './InvoiceModal.css';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/invoices`;
+
 export default function InvoiceModal({ invoice, onClose, onSaved }) {
   const isEditMode = Boolean(invoice);
 
@@ -44,8 +46,8 @@ export default function InvoiceModal({ invoice, onClose, onSaved }) {
     try {
         const method = isEditMode ? 'PUT' : 'POST';
         const url = isEditMode
-        ? `${VITE_API_URL}/${invoice._id}`
-        : VITE_API_URL;
+        ? `${API_URL}/${invoice._id}`
+        : API_URL;
 
         const res = await fetch(url, {
         method,
@@ -58,7 +60,6 @@ export default function InvoiceModal({ invoice, onClose, onSaved }) {
         onSaved();
         onClose();
     } catch {
-        alert(url);
         alert('Error saving invoice');
     } finally {
         setIsSaving(false);
