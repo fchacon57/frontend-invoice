@@ -47,6 +47,8 @@ export default function InvoiceModal({ invoice, onClose, onSaved }) {
         ? `${VITE_API_URL}/${invoice._id}`
         : VITE_API_URL;
 
+        alert(url);
+
         const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
